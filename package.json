@@ -10,7 +10,7 @@
   "scripts": {
     "update": "node core/deploy.js --gitCommit true --doPublish true & npm run test-js & npm publish",
     "test-js": "node tests/_tests.js",
-    "test-npm": "npx npm-jetpack --doPublish true --gitCommit true & npm run update",
+    "test-npm": "npx npm-jetpack --releaseSuffix -alpha --doPublish true --gitCommit true & npm run update",
     "update-minor": "node core/deploy.js --minor --gitCommit true --doPublish true & npm run test-js && npm publish",
     "update-major": "node core/deploy.js --major --gitCommit true --doPublish true & npm run test-js && npm publish"
   }
