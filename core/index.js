@@ -95,7 +95,7 @@ module.exports = function (useOptions = {}) {
         if (cliOptions.gitCommit) {
             try {
                 LOG('Trying to do git commit (requested)');
-                childProcess.execSync(`git add . && git commit -m "Version update to ${nextVersion}" && git push`);
+                childProcess.execSync(`git add . & git commit -m "Version update to ${nextVersion}" & git push`);
             } catch (gitError) {
                 LOG(`git commit FAILED, error: ${gitError}`, 'error');
             }
