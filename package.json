@@ -2,13 +2,13 @@
   "author": "rchuvilev",
   "license": "MIT",
   "name": "npm-jetpack",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "",
   "bin": {
     "npm-jetpack": "bin/index.js"
   },
   "scripts": {
-    "update": "node core/deploy.js --commit --publish & npm run test-js",
+    "update": " npm run test-js & node core/deploy.js --commit --publish",
     "test-js": "node tests/_tests.js",
     "test-npm": "npx npm-jetpack --releaseSuffix -alpha --commit --publish",
     "update-minor": "npm run test-js & node core/deploy.js --minor --commit --publish",

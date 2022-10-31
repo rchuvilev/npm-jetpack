@@ -39,7 +39,7 @@ const testCases = [
         name: "test-dist-dir",
         subdir: '/dist',
         file: '.subdir',
-        ver: '1.1.2',
+        ver: '1.3.2',
         command: "",
     },
 ];
