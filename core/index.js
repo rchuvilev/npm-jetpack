@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const childProcess = require('child_process');
 const LOG = (message, type = 'log') => console[type](`NPM-JETPACK - ${message}`);
 const BREAK = () => {
     console.log('');
@@ -94,7 +95,7 @@ module.exports = function (useOptions = {}) {
         if (cliOptions.gitCommit) {
             try {
                 LOG('Trying to do git commit (requested)');
-                process.exec(`git commit -m "Version update to ${nextVersion}`);
+                childProcess.execSync(`git commit -m "Version update to ${nextVersion}`);
             } catch (gitError) {
                 LOG(`git commit FAILED, error: ${gitError}`, 'error');
             }
@@ -102,7 +103,7 @@ module.exports = function (useOptions = {}) {
         if (cliOptions.doPublish) {
             try {
                 LOG('Trying to do npm publish (requested)');
-                process.exec(`npm publish`);
+                childProcess.execSync(`npm publish`);
             } catch (npmError) {
                 LOG(`npm publish FAILED, error: ${npmError}`, 'error');
             }
