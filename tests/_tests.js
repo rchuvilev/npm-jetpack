@@ -35,13 +35,13 @@ const testCases = [
         ver: '1.0.0',
         command: "--major",
     },
-    {
+    /*{
         name: "test-dist-dir",
         subdir: '/dist',
         file: '.subdir',
         ver: '0.0.1',
         command: "",
-    },
+    },*/
 ];
 
 (function runTests() {
@@ -79,5 +79,14 @@ if (errors.length) {
     console.log(`Total errors: ${errors.length}`);
     console.log(`Errors details: ${JSON.stringify(errors, null, 2)}`)
 } else {
+
+    childProcess.spawnSync(
+        `clear`,
+        {
+            stdio: 'inherit',
+            cwd: process.cwd(),
+            shell: true,
+        }
+    );
     console.log(`TESTS SUCCEEDED: passed ${testCasesPassed.length} of ${testCases.length}`);
 }
