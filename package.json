@@ -2,15 +2,15 @@
   "author": "rchuvilev",
   "license": "MIT",
   "name": "npm-jetpack",
-  "version": "1.0.19",
+  "version": "1.0.20-alpha",
   "description": "",
   "bin": {
     "npm-jetpack": "bin/index.js"
   },
   "scripts": {
     "test-js": "node tests/_tests.js",
-    "test-npm": "npx npm-jetpack --releaseSuffix -alpha --gitCommit true --doPublish true && npm run update-main",
-    "update-main": "node core/deploy.js --gitCommit true --doPublish true && npm run test-js && npm publish",
+    "test-npm": "npx npm-jetpack --releaseSuffix -alpha --gitCommit true --doPublish true && npm run update",
+    "update": "node core/deploy.js --gitCommit true --doPublish true && npm run test-js && npm publish",
     "update-minor": "node core/deploy.js --minor --gitCommit true --doPublish true && npm run test-js && npm publish",
     "update-major": "node core/deploy.js --major --gitCommit true --doPublish true && npm run test-js && npm publish"
   }
