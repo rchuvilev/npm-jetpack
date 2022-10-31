@@ -2,13 +2,13 @@
   "author": "rchuvilev",
   "license": "MIT",
   "name": "npm-jetpack",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "",
   "bin": {
     "npm-jetpack": "bin/index.js"
   },
   "scripts": {
-    "publish": "npx npm-jetpack && git add package.json && git commit -m \"New version\" && npm run test && npm publish",
+    "publish": "node core/deploy.js && git add package.json && git commit -m \"New version\" && npm run test && npm publish",
     "test": "npm i -g && node tests/_tests.js"
   }
 }
