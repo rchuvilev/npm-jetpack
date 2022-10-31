@@ -8,7 +8,7 @@
     "npm-jetpack": "bin/index.js"
   },
   "scripts": {
-    "publish": "node core/deploy.js && git add package.json && git commit -m \"New version\" && npm run test && npm publish",
+    "update": "node core/deploy.js && git add package.json && git commit -m \"New version\" && npm run test && npm publish",
     "test": "node tests/_tests.js"
   }
 }
