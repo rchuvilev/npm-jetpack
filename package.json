@@ -2,7 +2,7 @@
   "author": "rchuvilev",
   "license": "MIT",
   "name": "npm-jetpack",
-  "version": "1.0.27-alpha",
+  "version": "1.0.28",
   "description": "",
   "bin": {
     "npm-jetpack": "bin/index.js"
