@@ -2,7 +2,7 @@
 
 ## Description
 
-This package is dedicated to help in handling npm packages versions while publishing.
+This package is dedicated to help in handling npm packages versions for publishing.
 
 ## Usage overview
 
