@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const child_process = require('child_process');
 const LOG = (message, type = 'log') => console[type](`NPM-JETPACK - ${message}`);
 const BREAK = () => {
     console.log('');
@@ -84,6 +85,9 @@ module.exports = function (useOptions = {}) {
         const nextVersion = nextVersionArr.join('.') + releaseSuffix;
         packageJsonObj.version = nextVersion;
         LOG(`Writing updated package.json to: ${path.join(distDir, `package${testing}.json`)}`);
+        if (!fs.existsSync(distDir)) {
+            fs.mkdirSync(distDir);
+        }
         fs.writeFileSync(path.join(distDir, `package${testing}.json`), JSON.stringify(packageJsonObj, null, 2), 'utf8');
         if (!testing) { // additional writing to original
             fs.writeFileSync(packageJson, JSON.stringify(packageJsonObj, null, 2), 'utf8');

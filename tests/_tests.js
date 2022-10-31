@@ -35,13 +35,13 @@ const testCases = [
         ver: '1.0.0',
         command: "--major",
     },
-    /*{
+    {
         name: "test-dist-dir",
         subdir: '/dist',
         file: '.subdir',
         ver: '0.0.1',
         command: "",
-    },*/
+    },
 ];
 
 (function runTests() {
@@ -55,11 +55,11 @@ const testCases = [
                     shell: true,
                 }
             );
-            const package = JSON.parse(fs.readFileSync(path.resolve(rootDir, 'tests', testCase.subdir, `package${testCase.file}.json`), 'utf8'));
+            const package = JSON.parse(fs.readFileSync(path.join(rootDir, 'tests', testCase.subdir, `package${testCase.file}.json`), 'utf8'));
             if (testCase.subdir) {
-                fs.rmdirSync(path.resolve(rootDir, 'tests', testCase.subdir), { recursive: true });
+                deleteFolderRecursive(path.join(rootDir, 'tests', testCase.subdir), { recursive: true });
             } else {
-                fs.unlinkSync(path.resolve(rootDir, 'tests', testCase.subdir, `package${testCase.file}.json`));
+                fs.unlinkSync(path.join(rootDir, 'tests', testCase.subdir, `package${testCase.file}.json`));
             }
             if (testCase.ver && testCase.ver !== package.version) {
                 throw new Error(`Wrong version: ${package.version} instead of ${testCase.ver}`);
@@ -90,3 +90,19 @@ if (errors.length) {
     );
     console.log(`TESTS SUCCEEDED: passed ${testCasesPassed.length} of ${testCases.length}`);
 }
+
+function deleteFolderRecursive(directoryPath) {
+    if (fs.existsSync(directoryPath)) {
+        fs.readdirSync(directoryPath).forEach((file, index) => {
+            const curPath = path.join(directoryPath, file);
+            if (fs.lstatSync(curPath).isDirectory()) {
+                // recurse
+                deleteFolderRecursive(curPath);
+            } else {
+                // delete file
+                fs.unlinkSync(curPath);
+            }
+        });
+        fs.rmdirSync(directoryPath);
+    }
+};
