@@ -6,6 +6,17 @@ This package is dedicated to help in handling npm packages versions while publis
 
 ## Usage overview
 
+### What does npm-jetpack do
+
+1) Takes current package.json ();
+2) Updates version according to flag / params;
+3) Saves updated package.json to dist folder (project root if dist not provided);
+4) Overwrites original ('single source of truth') package.json for future updates;
+5) Commits new changes in project and package.json updated to git (on demand via flag); 
+6) Publishes package to npm (on demand via flag);
+7) ?????????
+8) PROFIT!1!!!
+
 ### Options, flags and parameters
 
 Options and their defaults:
