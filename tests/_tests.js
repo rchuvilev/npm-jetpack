@@ -62,7 +62,12 @@ const testCases = [
                 fs.unlinkSync(path.join(rootDir, 'tests', testCase.subdir, `package${testCase.file}.json`));
             }
             if (testCase.ver && testCase.ver !== package.version) {
-                throw new Error(`Wrong version: ${package.version} instead of ${testCase.ver}`);
+                errors.push(
+                    errors.push({
+                        testCase: testCase.name,
+                        error: `Wrong version: ${package.version} instead of ${testCase.ver}`,
+                    })
+                );
             }
         } catch (error) {
             errors.push({
@@ -89,6 +94,10 @@ if (errors.length) {
         }
     );
     console.log(`TESTS SUCCEEDED: passed ${testCasesPassed.length} of ${testCases.length}`);
+}
+
+if (errors.length) {
+    process.exit(1);
 }
 
 function deleteFolderRecursive(directoryPath) {

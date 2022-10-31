@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const child_process = require('child_process');
 const LOG = (message, type = 'log') => console[type](`NPM-JETPACK - ${message}`);
 const BREAK = () => {
     console.log('');

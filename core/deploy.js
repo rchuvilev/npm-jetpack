@@ -1,2 +1,2 @@
-const npmJetpack = require('index');
+const npmJetpack = require('./index');
 npmJetpack();
