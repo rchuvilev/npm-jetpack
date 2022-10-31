@@ -108,3 +108,17 @@ scripts: {
 }
 ```
 
+Also it can be used in projects postbild scripts with passed options object:
+```
+    const npmJetpack = require('npm-jetpack');
+    // OR import npmJetpack from 'npm-jetpack';
+    
+    npmJetpack({
+        distDirPath: 'dist', // relative path to final directory to be published
+        packageJsonPath: 'package.json', // relative path to package.json
+        versionUpdateType: 2, // 'patch'
+        releaseSuffix: '-beta', // release suffix
+        gitCommit: true, // do not mention if won't use
+        doPublish: true, // do not mention if won't use
+    });
+```
