@@ -8,10 +8,8 @@ const BREAK = () => {
 }
 
 module.exports = function (useOptions = {}) {
-    LOG('Starting...', 'info');
-    const workingDir = process.cwd();
-    LOG(`Working directory: ${workingDir}`, 'info');
     try {
+        const workingDir = process.cwd();
         // HANDLING PROVIDED OPTIONS
         const defaultOptions = {
             distDirPath: '', // relative path to finally published directory
@@ -22,6 +20,8 @@ module.exports = function (useOptions = {}) {
             gitCommit: false, // only on demand
             testing: '', // output dir for testing purposes
         };
+        LOG('Starting...', 'info');
+        LOG(`Working directory: ${workingDir}`, 'info');
         LOG(`Default options: ${JSON.stringify(defaultOptions, null, 2)}, weight 1`);
         LOG(`Function options passed: ${JSON.stringify(useOptions, null, 2)}, weight 2`);
         const argv = [].concat(process.argv);

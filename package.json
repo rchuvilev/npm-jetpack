@@ -8,6 +8,6 @@
     "npm-jetpack": "bin/index.js"
   },
   "scripts": {
-    "test": "node tests/test.js"
+    "test": "npm i -g && node tests/_tests.js"
   }
 }

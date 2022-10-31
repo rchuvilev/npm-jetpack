@@ -35,27 +35,36 @@ const testCases = [
         ver: '1.0.0',
         command: "--major",
     },
+    {
+        name: "test-dist-dir",
+        subdir: '/dist',
+        file: '.subdir',
+        ver: '0.0.1',
+        command: "",
+    },
 ];
 
 (function runTests() {
     testCases.forEach(testCase => {
         try {
             childProcess.spawnSync(
-                `npx npm-jetpack ${testCase.command} --distDirPath tests --packageJsonPath tests/package.json --testing ${testCase.file}`,
+                `npx npm-jetpack ${testCase.command} --distDirPath tests${testCase.subdir} --packageJsonPath tests/package.json --testing ${testCase.file}`,
                 {
                     stdio: 'inherit',
                     cwd: process.cwd(),
                     shell: true,
                 }
             );
-            console.log(111111, path.resolve(rootDir, 'tests', testCase.subdir, `package${testCase.file}.json`));
-            const package = fs.readFileSync(JSON.parse(path.resolve(rootDir, 'tests', testCase.subdir, `package${testCase.file}.json`)));
-            // fs.unlink(path.resolve(rootDir, 'tests', testCase.subdir, `package${testCase.file}.json`));
-            if (package.version !== testCase.ver) {
+            const package = JSON.parse(fs.readFileSync(path.resolve(rootDir, 'tests', testCase.subdir, `package${testCase.file}.json`), 'utf8'));
+            if (testCase.subdir) {
+                fs.rmdirSync(path.resolve(rootDir, 'tests', testCase.subdir), { recursive: true });
+            } else {
+                fs.unlinkSync(path.resolve(rootDir, 'tests', testCase.subdir, `package${testCase.file}.json`));
+            }
+            if (testCase.ver && testCase.ver !== package.version) {
                 throw new Error(`Wrong version: ${package.version} instead of ${testCase.ver}`);
             }
         } catch (error) {
-            console.error(22222, error)
             errors.push({
                 testCase: testCase.name,
                 error,
