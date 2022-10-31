@@ -83,7 +83,7 @@ module.exports = function (useOptions = {}) {
         ));
         const nextVersion = nextVersionArr.join('.') + releaseSuffix;
         packageJsonObj.version = nextVersion;
-        LOG(`Writing updated package.json to: ${path.join(distDir, 'package.json')}`);
+        LOG(`Writing updated package.json to: ${path.join(distDir, `package${testing}.json`)}`);
         fs.writeFileSync(path.join(distDir, `package${testing}.json`), JSON.stringify(packageJsonObj, null, 2), 'utf8');
         if (!testing) { // additional writing to original
             fs.writeFileSync(packageJson, JSON.stringify(packageJsonObj, null, 2), 'utf8');
