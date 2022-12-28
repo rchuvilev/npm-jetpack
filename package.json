@@ -1,14 +1,14 @@
 {
+  "name": "npm-jetpack",
   "author": "rchuvilev",
   "license": "MIT",
-  "name": "npm-jetpack",
   "description": "NPX tool for handling npm packages versions for publishing",
   "keywords": [
     "npm package",
     "npm publish",
     "npx"
   ],
-  "version": "1.2.1",
+  "version": "1.2.3",
   "bin": {
     "npm-jetpack": "bin/index.js"
   },
